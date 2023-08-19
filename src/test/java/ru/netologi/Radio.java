@@ -1,38 +1,41 @@
 package ru.netologi;
+
 public class Radio {
-    private int currentStation;
+    private final int minNumber = 0;
+    private final int maxNumber = 9;
+    private int currentNumber;
+    private final int minVolume = 0;
+    private final int maxVolume = 100;
     private int currentVolume;
-    private int maxStation;
-    private int maxVolume;
-    private int minVolume;
-    public void next() {
-        if (currentStation != maxStation) {
-            currentStation++;
-        } else {
-            currentStation = 0;
-        }
+
+    public int getCurrentNumber() {
+        return currentNumber;
     }
 
-    public void prev() {
-        if (currentStation != 0) {
-            currentStation--;
-        } else {
-            currentStation = maxStation;
-        }
-    }
-
-    public int getCurrentStation() {
-        return currentStation;
-    }
-
-    public void setCurrentStation(int currentStation) {
-        if (currentStation < 0) {
+    public void setCurrentNumber(int newCurrentNumber) {
+        if (newCurrentNumber < minNumber) {
             return;
         }
-        if (currentStation > maxStation) {
+        if (newCurrentNumber > maxNumber) {
             return;
         }
-        this.currentStation = currentStation;
+        currentNumber = newCurrentNumber;
+    }
+
+    public void nextNumber() {
+        if (currentNumber < maxNumber) {
+            currentNumber = currentNumber + 1;
+        } else {
+            currentNumber = minNumber;
+        }
+    }
+
+    public void prevNumber() {
+        if (currentNumber > minNumber) {
+            currentNumber = currentNumber - 1;
+        } else {
+            currentNumber = maxNumber;
+        }
     }
 
     public int getCurrentVolume() {
@@ -61,6 +64,3 @@ public class Radio {
         }
     }
 }
-
-
-
